@@ -16,8 +16,13 @@ export class UserRepository implements IUserRepository {
         return user
     }
 
-    async getByUser(value: string, key?: string): Promise<object|any> {
-        const result = await prisma.user.findUnique({where:{email:value}})
-        return result
+    async getByUser(value: string, key?: string): Promise<object | any> {
+        if (key === 'email') {
+            const result = await prisma.user.findUnique({ where: { email: value } })
+            return result
+        } else {
+            const result = await prisma.user.findUnique({ where: { id: value } })
+            return result
+        }
     }
 }
