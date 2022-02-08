@@ -19,7 +19,6 @@ describe('TEST VALIDATIONS REGISTER', () => {
     })
 
 })
-
 describe('TESTS VALIDATION FOR LOGIN', () => {
     it('should login sucess', async () => {
         const sut = createSut()
