@@ -2,6 +2,7 @@ import { User } from "@prisma/client";
 import { IUserService } from "./structure";
 import { UserRepositoryMock } from "./UserRepositoryMock";
 import bcrypt from 'bcrypt'
+import  jwt  from "jsonwebtoken";
 
 interface ICreateUser {
     id?: string
@@ -38,9 +39,15 @@ export class UserService implements IUserService{
         if(!checkPassword){
             return{message:'Senha inválida!'}
         }else{
-            return {message:'Usuário logado com sucesso!'}
+            const secret = 'secret'
+            const token = jwt.sign({
+                id:getUser.id,
+                name:getUser.name
+            },
+            secret
+            )
+            return {token:token}
         }
-
     }
 
 }
