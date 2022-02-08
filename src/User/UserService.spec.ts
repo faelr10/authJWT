@@ -20,7 +20,7 @@ describe('test UserService',()=>{
         const sut = createSut()
         const user = {
             name:'Rafael',
-            email:'adriano@adriano',
+            email:'rafael@rafael.com',
             passwordHash:'123456'
         }
         const result = await sut.register(user)

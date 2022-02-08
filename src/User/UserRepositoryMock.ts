@@ -19,13 +19,13 @@ export class UserRepositoryMock implements IUserRepository{
         }
     }
 
-    async getByUser(value: string, key?: string): Promise<User | boolean> {
+    async getByUser(value: string, key?: string): Promise<object | any> {
         
         const listUserMock = [{
             id: "123456",
             name: "Adriano",
-            email: "adriano@adriano",
-            passwordHash:'123456'
+            email: "rafael@rafael.com",
+            passwordHash:'$2a$12$MIq0iJ5MceieC7LAtJ3AzOnpvL03XXllNFIBztWTFwypBxXnzp.1q'
         }]
 
         const verifiedEmail = listUserMock.find(listUserMock => listUserMock.email === value)
@@ -34,8 +34,8 @@ export class UserRepositoryMock implements IUserRepository{
             return{
                 id: "123456",
                 name: "Adriano",
-                email: "adriano@adriano",
-                passwordHash:'123456'
+                email: "rafael@rafael.com",
+                passwordHash:'$2a$12$MIq0iJ5MceieC7LAtJ3AzOnpvL03XXllNFIBztWTFwypBxXnzp.1q'
             }
         }else{
             return false

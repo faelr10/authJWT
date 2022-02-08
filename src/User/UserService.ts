@@ -1,6 +1,7 @@
 import { User } from "@prisma/client";
 import { IUserService } from "./structure";
 import { UserRepositoryMock } from "./UserRepositoryMock";
+import bcrypt from 'bcrypt'
 
 interface ICreateUser {
     id?: string
@@ -14,7 +15,6 @@ export class UserService implements IUserService{
     constructor(private userRepositoryMock:UserRepositoryMock){}
 
     async register(data: ICreateUser): Promise<User | any> {
-        
         const verifiedEmail = await this.userRepositoryMock.getByUser(data.email,'email')
 
         if(verifiedEmail){
@@ -22,6 +22,23 @@ export class UserService implements IUserService{
         }else{
             const user = await this.userRepositoryMock.register(data)
             return user
+        }
+    }
+
+    async login(email: string, password: string): Promise<object | Error> {
+        
+        const getUser = await this.userRepositoryMock.getByUser(email,'email')
+
+        if(!getUser){
+            return{message:'Email inválido!'}
+        }
+
+        const checkPassword = await bcrypt.compare(password,getUser.passwordHash)
+
+        if(!checkPassword){
+            return{message:'Senha inválida!'}
+        }else{
+            return {message:'Usuário logado com sucesso!'}
         }
 
     }

@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import { IUserController } from "./structure";
 import bcrypt from 'bcrypt'
+import { ParamsDictionary } from "express-serve-static-core";
+import { ParsedQs } from "qs";
+import { UserService } from "./UserService";
+import { UserRepositoryMock } from "./UserRepositoryMock";
 
 export class UserController implements IUserController{
 
@@ -18,12 +22,21 @@ export class UserController implements IUserController{
             res.json({message:'As senhas não conferem!'})
         }
         else{
-             const passwordHash = await bcrypt.hash(password,8)
-
-
-            
+            const passwordHash = await bcrypt.hash(password,8)
             res.json({message:'ok'})
         }
+    }
+
+    async login(req: Request, res: Response): Promise<void> {
+        const {email,password} = req.body
+        
+
+        const userRepositoryMock = new UserRepositoryMock()
+        const userService = new UserService(userRepositoryMock)
+
+        const result = await userService.login(email,password)
+
+        res.json(result)
 
     }
 

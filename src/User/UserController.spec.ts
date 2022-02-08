@@ -41,4 +41,34 @@ describe('Tests for Controller',()=>{
         expect(user.body.message).toBe('As senhas não conferem!')
     })
 
+    it('should login sucess',async()=>{
+        const user = await request(app)
+        .post('/login')
+        .send({
+            email:'rafael@rafael.com',
+            password:'123456',
+        })
+        expect(user.body.message).toBe('Usuário logado com sucesso!')
+    })
+
+    it('should validate compare password',async()=>{
+        const user = await request(app)
+        .post('/login')
+        .send({
+            email:'rafael@rafael.com',
+            password:'123455',
+        })
+        expect(user.body.message).toBe('Senha inválida!')
+    })
+
+    it('should validate email for login',async()=>{
+        const user = await request(app)
+        .post('/login')
+        .send({
+            email:'rafael1@rafael.com',
+            password:'123456',
+        })
+        expect(user.body.message).toBe('Email inválido!')
+    })
+
 })
