@@ -13,8 +13,8 @@ export class UserRepositoryMock implements IUserRepository{
     async register(data: ICreateUser): Promise<User | Error> {
         return{
             id: "123456",
-            name: "Adriano",
-            email: "adriano@adriano",
+            name: "Teste",
+            email: "teste@teste.com",
             passwordHash:'123456'
         }
     }
@@ -23,8 +23,8 @@ export class UserRepositoryMock implements IUserRepository{
         
         const listUserMock = [{
             id: "123456",
-            name: "Adriano",
-            email: "rafael@rafael.com",
+            name: "Teste",
+            email: "teste@teste.com",
             passwordHash:'$2a$12$MIq0iJ5MceieC7LAtJ3AzOnpvL03XXllNFIBztWTFwypBxXnzp.1q'
         }]
 
