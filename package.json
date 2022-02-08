@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:faelr10/authJWT.git",
   "author": "Rafael Victor <rafaelv.boscato@hotmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
