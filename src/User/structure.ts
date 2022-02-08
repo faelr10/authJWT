@@ -8,7 +8,6 @@ interface ICreateUser {
     passwordHash: string
 }
 
-
 export interface IUserController{
     register(req:Request,res:Response):Promise<void>
     login(req:Request,res:Response):Promise<void>

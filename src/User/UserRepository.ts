@@ -20,5 +20,4 @@ export class UserRepository implements IUserRepository {
         const result = await prisma.user.findUnique({where:{email:value}})
         return result
     }
-
 }
