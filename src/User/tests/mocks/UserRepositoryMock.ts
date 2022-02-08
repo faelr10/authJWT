@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import { IUserRepository } from "./structure";
+import { IUserRepository } from "../../structure";
 
 interface ICreateUser {
     id?: string

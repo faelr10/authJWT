@@ -1,5 +1,5 @@
-import { UserRepositoryMock } from "./UserRepositoryMock"
-import { UserService } from "./UserService"
+import { UserRepositoryMock } from "./mocks/UserRepositoryMock"
+import { UserService } from "../UserService"
 
 const createSut = () => {
     const userRepositoryMock = new UserRepositoryMock()

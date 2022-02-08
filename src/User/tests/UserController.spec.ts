@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { app } from '../app'
+import { app } from '../../app'
 
 describe('TESTS VALIDATION REGISTER', () => {
     it('should validate name is not null', async () => {
