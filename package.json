@@ -1,0 +1,8 @@
+{
+  "name": "authJWT",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:faelr10/authJWT.git",
+  "author": "Rafael Victor <rafaelv.boscato@hotmail.com>",
+  "license": "MIT"
+}
