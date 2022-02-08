@@ -6,25 +6,34 @@ const createSut = () => {
     const sut = new UserService(userRepositoryMock)
     return sut
 }
-
-interface ICreateUser {
-    id?: string
-    name: string
-    email: string,
-    passwordHash: string
-}
-
-describe('test UserService',()=>{
-
-    it('should verified already exist email register',async()=>{
+describe('TEST VALIDATIONS REGISTER', () => {
+    it('should verified already exist email register', async () => {
         const sut = createSut()
         const user = {
-            name:'Rafael',
-            email:'rafael@rafael.com',
-            passwordHash:'123456'
+            name: 'Teste',
+            email: 'teste@teste.com',
+            passwordHash: '123456'
         }
         const result = await sut.register(user)
-        expect(result).toEqual({message:'Email already exist!'})
+        expect(result).toEqual({ message: 'Email already exist!' })
     })
 
+})
+
+describe('TESTS VALIDATION FOR LOGIN', () => {
+    it('should login sucess', async () => {
+        const sut = createSut()
+        const user = await sut.login('teste@teste.com', '123456')
+        expect(user).toHaveProperty('token')
+    })
+    it('should validate compare password', async () => {
+        const sut = createSut()
+        const user = await sut.login('teste@teste.com', '123455')
+        expect(user).toEqual({ message: 'Senha inválida!' })
+    })
+    it('should validate email for login', async () => {
+        const sut = createSut()
+        const user = await sut.login('teste1@teste.com', '123456')
+        expect(user).toEqual({ message: 'Email inválido!' })
+    })
 })
